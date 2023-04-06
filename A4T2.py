@@ -2,9 +2,17 @@
 from pymongo import MongoClient
 import json
 import bson.json_util
+import argparse
+
+# setting up parser
+parser = argparse.ArgumentParser()
+parser.add_argument('port', type=int, nargs='?', default=27017, help='the port number to run the application on')
+args = parser.parse_args()
+port_number = args.port
 
 # setting up the client
-client = MongoClient()
+port_data = 'mongodb://localhost:' + str(port_number)
+client = MongoClient(port_data)
 
 # accessing the database and collection
 db = client.A4dbEmbed
